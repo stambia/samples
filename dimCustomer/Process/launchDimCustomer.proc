@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proc:process xmlns:proc="http://www.example.org/proc" id="_sZegABhwEeuX8sVdssU_aA">
+  <actionProcessRef id="_sZegARhwEeuX8sVdssU_aA" isBeginAction="false" name="loadDimCustomer" nbCycles="-1" toleratedError="false" processMap="true" targetName="../Mapping/loadDimCustomer.map#_1g8QZhhvEeuX8sVdssU_aA?fileId=_1g8QZhhvEeuX8sVdssU_aA$type=map$name=loadDimCustomer?"/>
+  <diagram><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:proc="http://www.example.org/proc" xsi:schemaLocation="http://www.eclipse.org/gmf/runtime/1.0.1/notation http://www.eclipse.org/gmf/runtime/1.0.2/notation#/?fileId=_sZegABhwEeuX8sVdssU_aA?" xmi:id="df90d61c-1561-4e3b-8a7f-ab8f2c844d5a" type="Proc" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="30cf19c9-b8fc-42e3-b626-35f70fc82fea" type="2003">
+    <children xmi:type="notation:Node" xmi:id="f57e5eb4-3bea-4df2-b15f-16d03ed1b5fb" type="5003"/>
+    <children xmi:type="notation:Node" xmi:id="4cac359c-6891-4254-8a42-92fb4f6cd637" type="7003">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="e78006b8-8b3b-45de-8a4c-a6b43c20ba83" collapsed="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="0943205b-a844-4726-b0f0-1847da56732c"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="64afa6f4-aca9-47f2-81cc-9620486857aa"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="52772c17-4348-49f0-ba18-85db268b2ced" type="7004">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="10f177ac-8572-4e3b-8756-5715ded5351b"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="b38647f9-2fba-4857-9a20-8a1daa3f343a"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="488c9ccd-4b47-41a4-a79d-dda6ad35ee5a"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="526580ae-18d9-418d-ad10-a6b272bb0f53" fontName="Segoe UI"/>
+    <element xmi:type="proc:ActionProcessRef" href="../../launchDimCustomer.proc#_sZegARhwEeuX8sVdssU_aA?fileId=_sZegABhwEeuX8sVdssU_aA$type=proc$name=loadDimCustomer?"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="9d6579db-455e-4051-874f-9ec04f1d52ee" x="143" y="65"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="4b6192ff-9f55-4cd9-a0c9-aaa31dc4a7fa"/>
+  <element xmi:type="proc:ActionProcess" href="../../launchDimCustomer.proc#_sZegABhwEeuX8sVdssU_aA?fileId=_sZegABhwEeuX8sVdssU_aA$type=proc$name=launchDimCustomer?"/>
+</notation:Diagram>
+]]></diagram>
+</proc:process>

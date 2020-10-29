@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map:map xmlns:map="http://www.indy.com/v2/map" id="_1g8QZhhvEeuX8sVdssU_aA" internalVersion="7" tech="platform:/plugin/com.indy.environment/technology/map/map.tech#_waYSMH8VEd2__Mzb_dB76A?fileId=_waYSMH8VEd2__Mzb_dB76A$type=tech$name=flow?">
+  <datastore id="_1g8QZxhvEeuX8sVdssU_aA" alias="DIM_CUSTOMER" dataset="_1g8QhhhvEeuX8sVdssU_aA" ref="../Metadata/Datamart.md#_-d1VCxhvEeuX8sVdssU_aA?fileId=_-d1UMRhvEeuX8sVdssU_aA$type=md$name=DIM_CUSTOMER?" subExpression="[A]">
+    <field id="_1g8QaBhvEeuX8sVdssU_aA" enable="true" insert="true" name="CUS_NAME" ref="../Metadata/Datamart.md#_-d1VJRhvEeuX8sVdssU_aA?fileId=_-d1UMRhvEeuX8sVdssU_aA$type=md$name=CUS_NAME?" update="true">
+      <expression id="_1g8QaRhvEeuX8sVdssU_aA" setDescriptorRef="_1g8QehhvEeuX8sVdssU_aA">
+        <expression>T_CUSTOMER.CUS_FIRST_NAME + T_CUSTOMER.CUS_LAST_NAME</expression>
+      </expression>
+    </field>
+    <field id="_1g8QahhvEeuX8sVdssU_aA" enable="true" insert="true" name="CUS_COMPANY" ref="../Metadata/Datamart.md#_-d1VMxhvEeuX8sVdssU_aA?fileId=_-d1UMRhvEeuX8sVdssU_aA$type=md$name=CUS_COMPANY?" update="true">
+      <expression id="_1g8QaxhvEeuX8sVdssU_aA" setDescriptorRef="_1g8QehhvEeuX8sVdssU_aA">
+        <expression>T_CUSTOMER.CUS_COMPANY</expression>
+      </expression>
+    </field>
+    <field id="_1g8QbBhvEeuX8sVdssU_aA" name="UPDATE_DATE" ref="../Metadata/Datamart.md#_-d1VQhhvEeuX8sVdssU_aA?fileId=_-d1UMRhvEeuX8sVdssU_aA$type=md$name=UPDATE_DATE?">
+      <expression id="_1g8QbRhvEeuX8sVdssU_aA" setDescriptorRef="_1g8QehhvEeuX8sVdssU_aA">
+        <expression></expression>
+      </expression>
+    </field>
+    <field id="_1g8QbhhvEeuX8sVdssU_aA" name="CUS_TITLE" ref="../Metadata/Datamart.md#_-d1VHhhvEeuX8sVdssU_aA?fileId=_-d1UMRhvEeuX8sVdssU_aA$type=md$name=CUS_TITLE?">
+      <expression id="_1g8QbxhvEeuX8sVdssU_aA" setDescriptorRef="_1g8QehhvEeuX8sVdssU_aA">
+        <expression></expression>
+      </expression>
+    </field>
+    <field id="_1g8QcBhvEeuX8sVdssU_aA" name="GEO_KEY_ID" ref="../Metadata/Datamart.md#_-d1VOhhvEeuX8sVdssU_aA?fileId=_-d1UMRhvEeuX8sVdssU_aA$type=md$name=GEO_KEY_ID?">
+      <expression id="_1g8QcRhvEeuX8sVdssU_aA" setDescriptorRef="_1g8QehhvEeuX8sVdssU_aA">
+        <expression></expression>
+      </expression>
+    </field>
+    <field id="_1g8QchhvEeuX8sVdssU_aA" name="CUS_KEY_ID" ref="../Metadata/Datamart.md#_-d1VDhhvEeuX8sVdssU_aA?fileId=_-d1UMRhvEeuX8sVdssU_aA$type=md$name=CUS_KEY_ID?" updateKey="false">
+      <expression id="_1g8QcxhvEeuX8sVdssU_aA" setDescriptorRef="_1g8QehhvEeuX8sVdssU_aA">
+        <expression></expression>
+      </expression>
+    </field>
+    <field id="_1g8QdBhvEeuX8sVdssU_aA" enable="true" insert="true" name="CUS_ID" ref="../Metadata/Datamart.md#_-d1VFhhvEeuX8sVdssU_aA?fileId=_-d1UMRhvEeuX8sVdssU_aA$type=md$name=CUS_ID?" update="true" updateKey="true">
+      <expression id="_1g8QdRhvEeuX8sVdssU_aA" setDescriptorRef="_1g8QehhvEeuX8sVdssU_aA">
+        <expression>T_CUSTOMER.CUS_ID</expression>
+      </expression>
+    </field>
+    <field id="_1g8QdhhvEeuX8sVdssU_aA" name="CUS_FORNAME" ref="../Metadata/Datamart.md#_-d1VLBhvEeuX8sVdssU_aA?fileId=_-d1UMRhvEeuX8sVdssU_aA$type=md$name=CUS_FORNAME?">
+      <expression id="_1g8QdxhvEeuX8sVdssU_aA" setDescriptorRef="_1g8QehhvEeuX8sVdssU_aA">
+        <expression></expression>
+      </expression>
+    </field>
+    <constraint id="_1g8QeBhvEeuX8sVdssU_aA" name="PK_DIM_CUSTOMER" ref="../Metadata/Datamart.md#_-d1VSRhvEeuX8sVdssU_aA?fileId=_-d1UMRhvEeuX8sVdssU_aA$type=md$name=PK_DIM_CUSTOMER?" reject="true"/>
+    <constraint id="_1g8QeRhvEeuX8sVdssU_aA" name="FK_DIM_CUSTOMER_GEO" ref="../Metadata/Datamart.md#_-d1VTBhvEeuX8sVdssU_aA?fileId=_-d1UMRhvEeuX8sVdssU_aA$type=md$name=FK_DIM_CUSTOMER_GEO?" reject="true"/>
+    <setDescriptor id="_1g8QehhvEeuX8sVdssU_aA" label="A"/>
+  </datastore>
+  <datastore id="_1g8QexhvEeuX8sVdssU_aA" alias="T_CUSTOMER" dataset="_1g8QhxhvEeuX8sVdssU_aA" ref="../Metadata/Hotel.md#_B2ukHhhwEeuX8sVdssU_aA?fileId=_B2ujzBhwEeuX8sVdssU_aA$type=md$name=T_CUSTOMER?">
+    <field id="_1g8QfBhvEeuX8sVdssU_aA" fullAlias="CUS_ID" name="CUS_ID" ref="../Metadata/Hotel.md#_B2ukIRhwEeuX8sVdssU_aA?fileId=_B2ujzBhwEeuX8sVdssU_aA$type=md$name=CUS_ID?" updateKey="true"/>
+    <field id="_1g8QfRhvEeuX8sVdssU_aA" name="TIT_CODE" ref="../Metadata/Hotel.md#_B2ukKRhwEeuX8sVdssU_aA?fileId=_B2ujzBhwEeuX8sVdssU_aA$type=md$name=TIT_CODE?"/>
+    <field id="_1g8QfhhvEeuX8sVdssU_aA" fullAlias="CUS_COMPANY" name="CUS_COMPANY" ref="../Metadata/Hotel.md#_B2ukPhhwEeuX8sVdssU_aA?fileId=_B2ujzBhwEeuX8sVdssU_aA$type=md$name=CUS_COMPANY?"/>
+    <field id="_1g8QfxhvEeuX8sVdssU_aA" name="CUS_BIRTH_DATE" ref="../Metadata/Hotel.md#_B2ukRRhwEeuX8sVdssU_aA?fileId=_B2ujzBhwEeuX8sVdssU_aA$type=md$name=CUS_BIRTH_DATE?"/>
+    <field id="_1g8QgBhvEeuX8sVdssU_aA" fullAlias="CUS_LAST_NAME" name="CUS_LAST_NAME" ref="../Metadata/Hotel.md#_B2ukMBhwEeuX8sVdssU_aA?fileId=_B2ujzBhwEeuX8sVdssU_aA$type=md$name=CUS_LAST_NAME?"/>
+    <field id="_1g8QgRhvEeuX8sVdssU_aA" fullAlias="CUS_FIRST_NAME" name="CUS_FIRST_NAME" ref="../Metadata/Hotel.md#_B2ukNxhwEeuX8sVdssU_aA?fileId=_B2ujzBhwEeuX8sVdssU_aA$type=md$name=CUS_FIRST_NAME?"/>
+    <constraint id="_1g8QghhvEeuX8sVdssU_aA" name="PK_T_CUSTOMER" ref="../Metadata/Hotel.md#_B2ukTBhwEeuX8sVdssU_aA?fileId=_B2ujzBhwEeuX8sVdssU_aA$type=md$name=PK_T_CUSTOMER?" reject="true"/>
+    <constraint id="_1g8QgxhvEeuX8sVdssU_aA" name="FK_CUSTOMER_TITLE" ref="../Metadata/Hotel.md#_B2ukTxhwEeuX8sVdssU_aA?fileId=_B2ujzBhwEeuX8sVdssU_aA$type=md$name=FK_CUSTOMER_TITLE?" reject="true"/>
+  </datastore>
+  <template id="_1g8QhBhvEeuX8sVdssU_aA" name="I_DIM_CUSTOMER" process="platform:/plugin/com.indy.environment/templates/templates.generic/Rdbms/Hsql/INTEGRATION%20Hsql.tp.proc#_HFOfdjEZEd-WZe6cNi2k2w?fileId=_HFOfdjEZEd-WZe6cNi2k2w$type=proc$name=INTEGRATION%20Hsql?" targetId="_1g8QZxhvEeuX8sVdssU_aA"/>
+  <template id="_1g8QhRhvEeuX8sVdssU_aA" name="L1_DIM_CUSTOMER" process="platform:/plugin/com.indy.environment/templates/templates.generic/Rdbms/LOAD%20Rdbms%20to%20Rdbms.tp.proc#_aafbe681-11ab-4ebc-ab56-de794128c580?fileId=_aafbe681-11ab-4ebc-ab56-de794128c580$type=proc$name=LOAD%20Rdbms%20to%20Rdbms?" sourceId="_1g8QexhvEeuX8sVdssU_aA" targetId="_1g8QZxhvEeuX8sVdssU_aA"/>
+  <dataSet id="_1g8QhhhvEeuX8sVdssU_aA">
+    <container>_1g8QZxhvEeuX8sVdssU_aA</container>
+  </dataSet>
+  <dataSet id="_1g8QhxhvEeuX8sVdssU_aA">
+    <container>_1g8QexhvEeuX8sVdssU_aA</container>
+  </dataSet>
+  <hint>
+    <usedField>#_1g8QfBhvEeuX8sVdssU_aA</usedField>
+    <usedField>#_1g8QfhhvEeuX8sVdssU_aA</usedField>
+    <usedField>#_1g8QgBhvEeuX8sVdssU_aA</usedField>
+    <usedField>#_1g8QgRhvEeuX8sVdssU_aA</usedField>
+  </hint>
+  <diagram><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:map="http://www.indy.com/v2/map" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xsi:schemaLocation="http://www.eclipse.org/gmf/runtime/1.0.1/notation http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="d35e9b75-66e3-4a13-ae7a-10a4e428fca0" type="Map" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="f0b204fc-31e6-4460-8c30-64329b6c2445" type="2004" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="97444cb2-dec4-44ea-bbfd-f9d258664947" type="5005"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="4ad3db0d-a97f-4fb4-b278-918ee5855b69" type="5007"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="0120797c-6e7e-4f3b-9a08-9c3cfa4fb4fe" type="7003"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="a6853464-ae5d-4980-9c5c-99fc499ff09d" type="7009"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="016c7fa3-15f9-4bf4-984f-476bc67b27aa" type="7004">
+      <styles xmi:type="notation:SortingStyle" xmi:id="f316d342-98cb-4df5-a95d-62eccddc3149"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="3c66a3b3-1daf-4b3a-b75a-f906f97b8153"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="a87d1132-145f-44b1-aeb5-c6f34401936d" type="5009">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="7fe74fbe-8861-4fad-92b5-98b678e74701"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="200122ba-cec7-4979-a8cf-f42fa1b0dd8e" type="7005">
+      <styles xmi:type="notation:SortingStyle" xmi:id="1568d698-0e89-44de-a934-2eecbbaa72bd"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="36571fed-8370-4508-ba90-97be2e3ad5e6"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="6190a80a-1faf-4e8f-a161-6d0c97a25123" type="7007"/>
+    <element xmi:type="map:Datastore" href="../../loadDimCustomer.map#_1g8QexhvEeuX8sVdssU_aA?fileId=_1g8QZhhvEeuX8sVdssU_aA$type=map?"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="6127679f-521a-4573-bf8b-bd1a5015fecc" x="30" y="50"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="013a64c4-6796-403d-bb30-c8f119a414f8" type="2004" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="5615479e-865f-4af6-b558-ee117d2a768b" type="5005"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="3478148f-0d20-47d7-85c1-d299bed658ab" type="5007"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="6154a5ed-360d-4e3d-b13e-9dd6a2dc4864" type="7003"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="6a61313b-a44c-436b-844d-394472671c04" type="7009"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="e1fcc1f3-1377-419e-b31b-877744811282" type="7004">
+      <styles xmi:type="notation:SortingStyle" xmi:id="36513358-777f-465c-99f5-9ca2529ac2c8"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="d7b1fa8e-2856-4cfb-9e9d-17aca15078dc"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="ddf20993-ad78-4bb2-bd21-d0133e515eff" type="5009">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="6fef722f-452d-4941-aba4-585fce092e2f"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="8dc0d6cd-159a-45de-b0fb-f94af5fdb510" type="7005">
+      <styles xmi:type="notation:SortingStyle" xmi:id="e288f4c7-b5f8-4f48-ba1d-04cfdb91cf61"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="861f16fa-ebb1-47ac-b5ee-6d074b392f42"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="668588c6-23e9-4b69-a576-01dbd2a9c944" type="7007"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="285e390f-bf76-4fd4-b486-0aea9ac6c469" type="5009">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="abe392de-8314-490b-a3c8-878427fe967f"/>
+    </children>
+    <element xmi:type="map:Datastore" href="../../loadDimCustomer.map#_1g8QZxhvEeuX8sVdssU_aA?fileId=_1g8QZhhvEeuX8sVdssU_aA$type=map?"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="e1f02fa1-11e5-43d9-87d6-0d9dfed6693b" x="296" y="30"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="82d28daa-ec10-44c7-a18d-a2df6f67d7bf"/>
+  <element xmi:type="map:Map" href="../../loadDimCustomer.map#_1g8QZhhvEeuX8sVdssU_aA?fileId=_1g8QZhhvEeuX8sVdssU_aA$type=map$name=loadDimCustomer?"/>
+  <edges xmi:type="notation:Edge" xmi:id="53e10267-7d1d-4420-9d78-bcc03d7e5a53" type="targetLink" source="013a64c4-6796-403d-bb30-c8f119a414f8" target="f0b204fc-31e6-4460-8c30-64329b6c2445">
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="6e511cc3-7853-4078-b070-4789ffab1fd7" points="[0, 0, 60, 0]$[-60, 0, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="cadba21e-80dc-4ac6-86e8-e9ec47daca78" id="(0.0,0.4975369458128079)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="31d4b0d9-7fee-4a94-89b5-598f6ccc96e8" id="(1.0,0.49693251533742333)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="95d0dbff-b243-4735-9247-d4cee400591e" type="targetDataSetLink" source="013a64c4-6796-403d-bb30-c8f119a414f8" target="013a64c4-6796-403d-bb30-c8f119a414f8">
+    <element xmi:type="map:DataSet" href="../../loadDimCustomer.map#_1g8QhxhvEeuX8sVdssU_aA?fileId=_1g8QZhhvEeuX8sVdssU_aA$type=map?"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="009b00af-7590-4c65-90c2-d65add5feefa" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="7bea1d5b-98e1-4217-9648-cd2e025f20d2" type="targetSetLink" source="013a64c4-6796-403d-bb30-c8f119a414f8" target="013a64c4-6796-403d-bb30-c8f119a414f8">
+    <element xmi:type="map:SetDescriptor" href="../../loadDimCustomer.map#_1g8QehhvEeuX8sVdssU_aA?fileId=_1g8QZhhvEeuX8sVdssU_aA$type=map?"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="a16f4a53-e6a7-415d-994d-4870381818b3" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+</notation:Diagram>
+]]></diagram>
+</map:map>
