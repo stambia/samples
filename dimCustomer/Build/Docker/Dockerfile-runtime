@@ -1,0 +1,22 @@
+FROM openjdk:8u212-jre-alpine
+
+ENV STAMBIA_JAVA_HOME /usr/
+ENV STAMBIA_HOME /opt/stambia/stambiaRuntime/
+ENV STAMBIA_PROPERTIES_LOCATION /opt/stambia/stambiaRuntime/properties/
+
+COPY stambiaRuntime.zip /opt/stambia/
+COPY wait-for /opt/stambia/
+
+RUN unzip /opt/stambia/stambiaRuntime.zip -d /opt/stambia/
+RUN rm /opt/stambia/stambiaRuntime.zip
+RUN chmod -R 755 /opt/stambia/
+
+COPY ./modules /opt/stambia/stambiaRuntime/modules
+COPY ./engineParameters.xml /opt/stambia/stambiaRuntime/properties/
+COPY ./deliveries /opt/stambia/stambiaRuntime/build/deliveries
+
+WORKDIR /opt/stambia/stambiaRuntime
+
+EXPOSE 42000 42200
+
+CMD ["/opt/stambia/stambiaRuntime/startengine.sh", "-verbose"]

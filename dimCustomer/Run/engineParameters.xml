@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<parameters>
+
+	<!--	
+	==============================
+	Engine Parameters
+	==============================
+	
+	This file contains parameters allowing to change and configure default Runtime behaviors.
+	You can modify defaults ports used by the different Runtime services, its log database, etc.
+	Changing a parameter requires a restart of the Runtime to be effective.
+	
+	Note that you can use environment variables and java properties in values, using the following syntax:
+	${java.property|environment.variable:<VARIABLE_NAME>[:<DEFAULT_VALUE>]}
+	
+	E.g.
+	${environment.variable:STAMBIA_RMI_PORT:42000}
+	
+	For further information consult reference documentation and the comments of this file.
+
+	-->
+	<engineParameters>
+	
+		<!-- 
+		==============================
+		Common Parameters 
+		==============================
+		-->
+		
+		<parameter name="userLogDefaultName" value="${environment.variable:STAMBIA_LOG_DB_ALIAS:h2LogDatabase}"/>
+		<parameter name="debugLevel" value="0"/>
+		<parameter name="temporaryFolder" value="${environment.variable:STAMBIA_EXT_HOME/temp:temp}"/>
+		<parameter name="repositoryCacheFolder" value="build/cache/repository"/>
+		<parameter name="deliveryExtension" value="deliv"/>
+		<parameter name="defaultFetchSize" value="1000"/>
+		<parameter name="defaultBatchSize" value="1000"/>
+		<parameter name="defaultJdbcConnectionTimeout" value="100"/>
+		<parameter name="defaultJdbcQueryTimeout" value="100"/>
+		<parameter name="defaultSessionReportNumber" value="10"/>
+		<parameter name="memoryLogScanDelay" value="10000"/>
+		<parameter name="memoryLogCacheDelay" value="30000"/>
+		
+		<!--
+			This defines what level of information is logged inside log database for each session executed by the Runtime.  
+			The higher the value is the higher information are logged.
+			Possible values are the following: -1, 0, 100, 200, 300, 400
+			
+			Note that is applies only for sessions on which the log level is not defined manually at execution.
+			Refer to the reference documentation for further information.
+		-->
+		<parameter name="defaultSessionLogLevel" value="400"/>
+		
+		<!--  Batch size used for log database purge operations.
+		When this parameter is not specified the queries performed by purge operations are processing all the rows at once.
+		Specifying a batch size can help to avoid overloading the database when performing purge operations. -->
+		
+		<!-- <parameter name="logPurgeBatchSize" value="100"/>  -->
+		
+		<!-- Jython version to use for scripting actions.
+		If you want to use another version, create a folder under the following location and put inside the corresponding Jython libraries.
+		The name of the folder you choose will be the name of the version to specify in this parameter.
+		<Runtime Installation Folder>/lib/jython/<jythonVersion>
+		-->	
+		<parameter name="jythonVersion" value="2.2"/>
+
+		<!--
+		==============================
+		Services Parameters
+		==============================
+		-->
+		
+		<parameter name="launchSchedulerEngine" value="${environment.variable:STAMBIA_ENGINE_SCHEDULER:true}"/>
+		<parameter name="launchExecutionEngine" value="${environment.variable:STAMBIA_ENGINE_EXECUTION:true}"/>
+		<parameter name="launchReportEngine" value="${environment.variable:STAMBIA_ENGINE_REPORT:true}"/>
+		<parameter name="startInternalDb" value="${environment.variable:STAMBIA_ENGINE_INTERNALDB:true}"/>
+		<parameter name="startSoapServer" value="${environment.variable:STAMBIA_ENGINE_HTTP:true}"/>
+		<!--<parameter name="rmiHost" value="localhost"/>-->
+		<parameter name="soapHost" value="${environment.variable:STAMBIA_SOAP_HOST:localhost}"/>
+		
+		<!-- Defines if clients can connect and perform operations on the Runtime through HTTP -->
+		<parameter name="enableHttpClientConnections" value="true"/>		
+		
+		<!--
+		==============================
+		Services Ports
+		==============================
+		-->
+		
+		<parameter name="rmiPort" value="${environment.variable:STAMBIA_RMI_PORT:42000}"/>
+		<!--<parameter name="rmiCallbackPort" value="42000"/>-->
+		<parameter name="internalDbTcpPort" value="${environment.variable:STAMBIA_TCP_DB_PORT:42100}"/>
+		<parameter name="internalDbWebPort" value="${environment.variable:STAMBIA_HTTP_DB_PORT:42101}"/>
+		<parameter name="soapServerPort" value="${environment.variable:STAMBIA_HTTP_PORT:42200}"/>
+
+		<!--
+		==============================
+		Services Security
+		==============================
+		-->
+			<!--
+			==============================
+		    Services Transport Security    
+			==============================
+			
+			The following parameters allow to define the transport security details.
+			When you want to secure RMI, HTTP, and Web Services endpoints communications through TLS, you have to define them.
+			Define here a protocol, and the information to a Java keystore containing the private / public key pair certificate to be used.		 			
+			-->
+
+			<!-- Set this parameter to true if you want the RMI connection to be secured through TLS (RMIS)
+			You must also define the Keystore and certificate details which will be used to secure RMI with TLS -->
+			
+			<parameter name="rmiEnableTls" value="false"/>	
+						
+			<!--  Keystore and certificate details
+			Those parameters must be defined to enabled TLS for the following transport endpoints:
+			RMI (if RMIS is enabled), HTTP, published Web Services endpoints.
+			-->
+								
+			<!--
+			<parameter name="webServiceSecureProtocol" value="TLSv1.2"/>
+			<parameter name="webServiceKeyStoreFile" value="D:/keystore/mykeystore.jks"/>
+			<parameter name="webServiceKeyStoreType" value="JKS"/> 
+			<parameter name="webServiceKeyStorePassword" value="password"/> 
+			<parameter name="webServiceKeyPassword" value="password"/>
+			-->
+	
+			<!--
+			==============================
+		    Password Ciphering    
+			==============================
+			-->
+			<!-- Name of the key that should be used for password encryption / decryption. 
+				 It must match a key defined under a keystore in the Runtime configuration.
+				 Example of keystores are documented further in this file.
+			-->
+		
+			<!--<parameter name="passwordCipheringKeyName" value="key_functional_name"/>-->
+		
+		<!--
+		==============================
+		Services Miscellaneous
+		==============================
+		-->
+		
+		<!-- This parameter enables connection pooling for exchanges between the Runtime and JDBC Databases.
+			 This can help to reduce the amount of connections created to JDBC Databases (defaults to false if not set).-->
+		<parameter name="enableConnectionPoolForJdbcDatabases" value="false"/>
+
+		<!-- This parameter enables connection pooling for exchanges between the Runtime and its Log Database.
+			 This can help to reduce the amount of connections created to the Log Database (defaults to false if not set).-->
+		<parameter name="enableConnectionPoolForLogDatabase" value="false"/>
+		
+		<!--
+		==============================
+		Standard Output
+		==============================
+		-->
+		
+		<parameter name="stackTraceOnStdOutput" value="true"/>
+		<parameter name="statisticsOnStdOutput" value="true"/>
+		<parameter name="sumVariables" value="SQL_NB_ROWS, SQL_STAT_INSERT,SQL_STAT_UPDATE, SQL_STAT_DELETE,SQL_STAT_ERROR,XML_NB_ELEMENTS,XML_NB_ATTRIBUTES,OUT_FILE_SIZE, IN_FILE_SIZE,XML_NB_TEXTS,SQL_PK_ROWS,SQL_CAR_ROWS,WSDL_NB_DONE,WSDL_NB_ERROR"/>
+		
+		<!--
+		==============================
+		Runtime Web Services Parameters
+		==============================
+		-->
+		
+		<!-- Maximum number of concurrent threads allowed on the SOAP server. If number exceeds this size, sessions are put on hold.
+			 When not specified the Runtime will use a variable pool which will adapt itself to the number of requests.
+		-->	
+		<!--<parameter name="soapServerThreadPoolSize" value="10"/>-->
+		
+		<!-- The three parameters below define if the Runtime should keep the Input / Output / Fault files created when a published Web Service is invoked.
+			 The following values are available: yes, no, if_error
+		-->		
+		<parameter name="webServiceInputMessageKeep" value="if_error"/>
+		<parameter name="webServiceOutputMessageKeep" value="if_error"/>
+		<parameter name="webServiceFaultMessageKeep" value="if_error"/>
+
+	</engineParameters>
+	
+	<!--	
+	==============================
+	Process Actions Parameters
+	==============================
+	
+	This bloc can be used to override the default values of Process Actions parameters.
+	Only a few of them support this from now, which you can find in the example below.
+	
+	Simply uncomment it and configure it to meet your requirements.
+	-->
+	
+	<!-- 
+	<actionConfiguration>
+   		<action className="com.indy.engine.actionCodes.sqlToParameters">
+    		<property name="defaultDateTimeFormat" value="yyyy-MM-dd"/>
+   		</action>
+  	</actionConfiguration>
+  	-->
+  	
+	<!--	
+	==============================
+	Repository Parameters
+	==============================
+
+	Repositories are the locations where the Runtime's deliveries are located.
+	They can be defined directly in this configuration file or externalized in another one if required.
+	-->
+	
+	<!-- Uncomment the line below if you want to externalize it to another file -->
+	<!-- <repositories file="./repositories.xml" /> -->
+	
+	<!-- Here is an example of repositories configuration -->
+	<!-- <repositories>
+		<fileRepository name="default" default="true" folder="build/deliveries/"/> 
+		<fileRepository name="webservices" default="true" folder="build/deliveries/webservices/" webService="true" synchPollingInterval="10000" scanMode="polling"/>
+		<httpRepository name="analytics_2_deployment_manager_name" default="false" url="http://localhost:8080/analytics" user="stambia" uncryptedPassword="stambia" unreachableTolerancePeriod="30000"/>
+		<httpRepository name="analytics_3_label_for_this_repository" environment="analytics_3_environment_name_to_retrieve_deliveries_from" default="false" url="http://localhost:8080/analytics" user="stambia" uncryptedPassword="stambia" unreachableTolerancePeriod="30000"/>
+	</repositories>  -->
+	
+	<!-- default repositories -->
+	<repositories>
+		<fileRepository name="default" default="true" folder="${environment.variable:STAMBIA_EXT_HOME/build/deliveries:build/deliveries/}"/> 
+		<fileRepository name="webservices" default="true" folder="${environment.variable:STAMBIA_EXT_HOME/build/deliveries/webservice:build/deliveries/webservice}" webService="true" synchPollingInterval="10000" scanMode="polling"/>
+	</repositories>
+	
+
+	<!--	
+	==============================
+	Security Parameters
+	==============================
+	
+		The security parameters allow to secure the Runtime with users, roles, and hostname / IP restriction.
+		When the security is enabled, any connection (Web Services executions included) will be protected.
+		
+		The security node must contain at least one user, which can be a normal or anonymous user.
+		
+		Note that you can also externalize the security node in another file if required.
+		
+		An example of security node is provided below.
+				
+		==============================
+	    User Definition    
+		==============================
+		   
+			You can define the users that can connect to the Runtime and their permissions.
+		
+			E.g. 	<user name="user01"  password="encrypted password" uncryptedPassword="plain text password" roles="Connect View Execute"/>
+
+			-	Only one of the "password" or "uncryptedPassword" should be set.	
+				The "password" must be encrypted with the Runtime's encrypt <password> command
+			-	The following roles are available: Connect, View, Execute, Admin
+			->	Multiple roles can be assigned to one user, separated with space characters.
+			
+			An anonymous user can be set, to specify the permissions of the users that connect to the Runtime without specifying credentials.
+			
+			E.g.	<user anonymous="true" roles="Connect View"/>
+			
+			When the anonymous user is set, it is therefore not mandatory to specify credentials when connecting.
+			The connected user will have the permissions of the anonymous user.
+
+			When the anonymous user is not set, specifying credentials when connecting is mandatory. 
+			Anonymous connections will then be rejected.
+
+			Note that only one anonymous user can be set at a time.
+		
+		==============================
+		Hostname / IP restriction
+		==============================
+			
+			You can define the hostnames / IP addresses that are allowed to connect to the runtime.
+			
+			E.g. 	<allow address="192.168.0.42"/>
+			
+			If no restriction is defined, all the addresses are allowed, otherwise only the specified addresses are.
+			You can add as many line as required.
+	-->
+	<!--
+		==============================
+		Security Node example
+		==============================
+	-->
+	<!-- Uncomment the line below if you want to externalize the security node to another file -->
+	<!-- <security  file="./security.xml"/> -->
+	
+	<!-- Here is an example of security node -->
+	<!-- <security>
+		<user anonymous="true" roles="Connect View"/>
+		<user name="admin"  uncryptedPassword="admin" roles="Admin"/>
+		<user name="developer"  uncryptedPassword="developer" roles="Connect View Execute"/>
+		<user name="consult"  uncryptedPassword="consult" roles="Connect View"/>
+		<allow address="192.168.0.42"/>
+	</security>	-->
+	
+	<!--	
+	==============================
+	Java Additional Options
+	==============================
+	
+	The following node allows to add additional Java options to the Runtime.
+	They correspond to the -DmyOption01=value01 that are added at Runtime's startup.
+	
+	Note that with this method, they are added programmatically by the Runtime itself DURING the startup.
+	Therefore, the Java options that require to be set directly on the startup command line will not work with this method.
+	-> They will be set too late for java to consider it.
+	
+	In this case, they need to be added directly to the initvariables.bat (.sh) or startengine.bat (.sh) scripts instead
+	
+	-->
+
+	<!-- Uncomment the line below if you want to externalize the node to another file -->
+	<!--<javaConfiguration file="./javaOpts.xml"/>-->
+
+	<!-- Here is an example of additional Java options node -->
+	<!--<javaConfiguration>
+		<property name="myOption01" value="value01"/>
+		<property name="myOption02" value="value02"/>
+	</javaConfiguration>-->
+	
+	<!--	
+	==============================
+	Keystores
+	==============================
+	
+	Define here your keystores.
+	The keystores are Java files which can containing certificates and keys for encryption decryption.
+	
+	At the moment the keystores defined here can only be used for defining the key for password encryption / decryption.
+	See "passwordCipheringKeyName" parameter.
+	
+	-->
+	
+	<!-- Here is an example of keystores configuration -->
+	<!--<keystores>
+		<keystore path="path_to_keystore_file" password="keystore_password" type="JKS">
+			<key name="key_functional_name" alias="key_alias_in_keystore" password="key_password"/> 	
+		</keystore>
+		<keystore path="path_to_keystore_file" password="keystore_password" type="JCEKS">
+			<key name="key_functional_name_2" alias="key_alias_in_keystore" password="key_password" blockCipherModeOperation="PCBC/PKCS5Padding"/> 	
+		</keystore>
+	</keystores>-->
+		
+	<!--	
+	==============================
+	Log Database Parameters
+	==============================
+	
+	The Runtime stores all the sessions' logs in a database.
+	By default, the internal H2 database shipped with the Runtime is used, but you can change it if needed.
+	
+	You can find below examples for the most known database providers.
+	Simply uncomment the one corresponding to your database and configure its parameters.
+	
+	IMPORTANT:	
+			-	Do not forget to comment or remove the <logs></logs> node of the Internal H2 Log Database if you do this.
+			-	Copy the JDBC driver of the database in the "default" Module of the Runtime
+				On a default installation it is located under stambiaRuntime/modules/default
+	
+	NOTES:	1	-	You can also externalize the log database configuration in another file if required.
+					Sample files are available under the /properties/samples/logs folder of the Runtime
+			2	-	You can use the following node to define an encrypted password.
+					<parameter name="userLogRdbmsEncryptedPassword" value=""/>
+					The password must be encrypted with the Runtime's encrypt <password> command	
+	-->
+	
+	<!-- Uncomment the line below if you want to externalize the log database configuration to another file -->
+	<!-- <include file="./logH2.xml"/> -->
+	
+		<!--	
+		==============================
+		Internal H2 Log Database
+		==============================
+		-->
+		<logs>
+			<log userLogName="h2LogDatabase" autoUpdate="true" userLogClass="com.indy.engine.userLog.RdbmsUserLog">
+				<parameter name="userLogRdbmsDriver" value="org.h2.Driver"/>
+				<parameter name="userLogRdbmsUrl" value="jdbc:h2:tcp://localhost:42100/sessions/internalDb/sessionLogs"/>
+				<parameter name="userLogRdbmsUser" value="sa"/>
+				<parameter name="userLogRdbmsPassword" value=""/>
+				<!--<parameter name="userLogRdbmsEncryptedPassword" value=""/>-->
+				<parameter name="userLogRdbmsVarcharType" value="varchar"/>
+				<parameter name="userLogRdbmsVarcharMaxSize" value="1000"/>
+				<parameter name="userLogRdbmsNumericType" value="numeric"/>
+				<parameter name="userLogRdbmsClobType" value="clob"/>
+				<parameter name="userLogRdbmsBlobType" value="blob"/>
+				<parameter name="userLogRdbmsSchemaName" value="logs"/>
+				<parameter name="userLogRdbmsUseSchemaNameForIndexCreation" value="true"/>
+				<parameter name="userLogRdbmsDeleteSyntaxe" value="Delete from"/>
+				<!--<parameter name="userLogRdbmsTablePrefix" value="STB_LOG_"/>-->
+				<!-- bestCompression / bestSpeed / default-->
+				<parameter name="userLogRdbmsCompressedLevel" value="bestCompression"/>
+				<!-- text / binary / compressed-->
+				<parameter name="userLogRdbmsDeliveryFormat" value="compressed"/>
+				<parameter name="userLogRdbmsPropertyMaxVarcharSize" value="1000"/>
+				<!-- -1 : infinite -->
+				<parameter name="userLogRdbmsPropertyMaxClobSize" value="10000"/>
+				<!-- binary / compressed-->
+				<parameter name="userLogRdbmsPropertyBinaryFormat" value="compressed"/>
+				
+				<parameter name="userLogRdbmsTimestampQuery" value="select now()"/>
+				<parameter name="userLogRdbmsInactivityDetectionPeriod" value="90000"/>
+				<parameter name="userLogRdbmsActivityRefreshInterval" value="60000"/>
+				<parameter name="userLogRdbmsDeletionWithNotExists" value="true"/>
+				<!--<parameter name="userLogRdbmsIndexCreationOption" value=""/>-->
+				<!--<parameter name="userLogRdbmsTableCreationOption" value=""/>-->
+			</log>
+			
+
+
+
+
+			<!--	
+		==============================
+		Oracle Log Database
+		==============================
+		-->
+	
+
+
+			<log userLogName="oraclelogDatabase" autoUpdate="true" userLogClass="com.indy.engine.userLog.RdbmsUserLog">
+				<parameter name="userLogRdbmsDriver" value="${environment.variable:STAMBIA_LOGDB_JDBC_CLASS:oracle.jdbc.driver.OracleDriver}"/>
+				<parameter name="userLogRdbmsUrl" value="${environment.variable:STAMBIA_LOGDB_JDBC_URL:default}"/>
+				<parameter name="userLogRdbmsUser" value="${environment.variable:STAMBIA_LOGDB_JDBC_USER:default}"/>
+				<parameter name="userLogRdbmsPassword" value="${environment.variable:STAMBIA_LOGDB_JDBC_PWD:default}"/>
+				<!--<parameter name="userLogRdbmsEncryptedPassword" value="${environment.variable:STAMBIA_LOGDB_JDBC_PWD:}"/>-->
+				<parameter name="userLogRdbmsSchemaName" value="${environment.variable:STAMBIA_LOGDB_JDBC_SCHEMA:logs}"/>
+				<parameter name="userLogRdbmsVarcharType" value="varchar2"/>
+				<parameter name="userLogRdbmsVarcharMaxSize" value="4000"/>
+				<parameter name="userLogRdbmsClobType" value="clob"/>
+				<parameter name="userLogRdbmsBlobType" value="blob"/>
+				<parameter name="userLogRdbmsNumericType" value="number"/>
+				<parameter name="userLogRdbmsDeleteSyntaxe" value="Delete from"/>
+				<parameter name="userLogRdbmsDeliveryFormat" value="text"/>
+				<parameter name="userLogRdbmsPropertyMaxVarcharSize" value="1000"/>
+				<parameter name="userLogRdbmsPropertyMaxClobSize" value="10000"/>
+				<parameter name="userLogRdbmsPropertyBinaryFormat" value="compressed"/>
+			</log>
+
+
+
+		<!--	
+		==============================
+		PostgreSQL Log Database
+		==============================
+		-->
+
+
+			<log userLogName="postgresLogDatabase" autoUpdate="true" userLogClass="com.indy.engine.userLog.RdbmsUserLog">
+				<parameter name="userLogRdbmsDriver" value="${environment.variable:STAMBIA_LOGDB_JDBC_CLASS:org.postgresql.Driver}"/>
+				<parameter name="userLogRdbmsUrl" value="${environment.variable:STAMBIA_LOGDB_JDBC_URL:default}"/>
+				<parameter name="userLogRdbmsUser" value="${environment.variable:STAMBIA_LOGDB_JDBC_USER:default}"/>
+				<parameter name="userLogRdbmsPassword" value="${environment.variable:STAMBIA_LOGDB_JDBC_PWD:default}"/>
+				<!--<parameter name="userLogRdbmsEncryptedPassword" value="${environment.variable:STAMBIA_LOGDB_JDBC_PWD:}"/>-->
+				<parameter name="userLogRdbmsSchemaName" value="${environment.variable:STAMBIA_LOGDB_JDBC_SCHEMA:logs}"/>
+				<parameter name="userLogRdbmsVarcharType" value="varchar"/>
+				<parameter name="userLogRdbmsVarcharMaxSize" value="1000"/>
+				<parameter name="userLogRdbmsNumericType" value="numeric"/>
+				<parameter name="userLogRdbmsClobType" value="text"/>
+				<parameter name="userLogRdbmsBlobType" value="bytea"/>
+				<parameter name="userLogRdbmsUseSchemaNameForIndexCreation" value="false"/>
+				<parameter name="userLogRdbmsDeleteSyntaxe" value="Delete from"/>
+				<parameter name="userLogRdbmsCompressedLevel" value="bestCompression"/>
+				<parameter name="userLogRdbmsDeliveryFormat" value="text"/>
+				<parameter name="userLogRdbmsPropertyMaxVarcharSize" value="1000"/>
+				<parameter name="userLogRdbmsPropertyMaxClobSize" value="-1"/>
+				<parameter name="userLogRdbmsPropertyBinaryFormat" value="compressed"/>
+			</log>
+
+
+		
+		<!--	
+		==============================
+		Microsoft SQL Server (MSSQL) Log Database
+		==============================
+		
+			==============================		
+			Important note:
+			==============================
+			The "sendStringParametersAsUnicode=false" option which is in the "userLogRdbmsUrl" example is important to avoid deadlocks and unexpected logging queries taking too much time.
+
+		-->
+
+
+			<log userLogName="msSqlLogDatabase" autoUpdate="true" userLogClass="com.indy.engine.userLog.RdbmsUserLog">
+				<parameter name="userLogRdbmsDriver" value="${environment.variable:STAMBIA_LOGDB_JDBC_CLASS:com.microsoft.sqlserver.jdbc.SQLServerDriver}"/>
+				<parameter name="userLogRdbmsUrl" value="${environment.variable:STAMBIA_LOGDB_JDBC_URL:default}"/>
+				<parameter name="userLogRdbmsUser" value="${environment.variable:STAMBIA_LOGDB_JDBC_USER:default}"/>
+				<parameter name="userLogRdbmsPassword" value="${environment.variable:STAMBIA_LOGDB_JDBC_PWD:default}"/>
+				<!--<parameter name="userLogRdbmsEncryptedPassword" value="${environment.variable:STAMBIA_LOGDB_JDBC_PWD:}"/>-->
+				<parameter name="userLogRdbmsVarcharType" value="varchar"/>
+				<parameter name="userLogRdbmsVarcharMaxSize" value="1000"/>
+				<parameter name="userLogRdbmsNumericType" value="numeric"/>
+				<parameter name="userLogRdbmsClobType" value="text"/>
+				<parameter name="userLogRdbmsBlobType" value="image"/>
+				<parameter name="userLogRdbmsSchemaName" value="${environment.variable:STAMBIA_LOGDB_JDBC_SCHEMA:logs}"/>
+				<parameter name="userLogRdbmsDeleteSyntaxe" value="Delete from"/>
+				<parameter name="userLogRdbmsUseSchemaNameForIndexCreation" value="false"/>
+				<parameter name="userLogRdbmsCompressedLevel" value="bestCompression"/>
+				<parameter name="userLogRdbmsDeliveryFormat" value="compressed"/>
+				<parameter name="userLogRdbmsPropertyMaxVarcharSize" value="1000"/>
+				<parameter name="userLogRdbmsPropertyMaxClobSize" value="10000"/>
+				<parameter name="userLogRdbmsPropertyBinaryFormat" value="compressed"/>
+			</log>
+
+
+		
+		<!--	
+		==============================
+		MySQL Log Database
+		==============================
+		-->
+
+
+			<log userLogName="mysqlLogDatabase" autoUpdate="true" userLogClass="com.indy.engine.userLog.RdbmsUserLog">
+				<parameter name="userLogRdbmsDriver" value="${environment.variable:STAMBIA_LOGDB_JDBC_CLASS:com.mysql.cj.jdbc.Driver}"/>
+				<parameter name="userLogRdbmsUrl" value="${environment.variable:STAMBIA_LOGDB_JDBC_URL:default}"/>
+				<parameter name="userLogRdbmsUser" value="${environment.variable:STAMBIA_LOGDB_JDBC_USER:default}"/>
+				<parameter name="userLogRdbmsPassword" value="${environment.variable:STAMBIA_LOGDB_JDBC_PWD:default}"/>
+				<!--<parameter name="userLogRdbmsEncryptedPassword" value="${environment.variable:STAMBIA_LOGDB_JDBC_PWD:}"/>-->
+				<parameter name="userLogRdbmsVarcharType" value="varchar"/>
+				<parameter name="userLogRdbmsVarcharMaxSize" value="1000"/>
+				<parameter name="userLogRdbmsNumericType" value="numeric"/>
+				<parameter name="userLogRdbmsClobType" value="longtext"/>
+				<parameter name="userLogRdbmsBlobType" value="longblob"/>
+				<parameter name="userLogRdbmsSchemaName" value="${environment.variable:STAMBIA_LOGDB_JDBC_SCHEMA:logs}"/>
+				<parameter name="userLogRdbmsDeleteSyntaxe" value="Delete from"/>
+				<parameter name="userLogRdbmsUseSchemaNameForIndexCreation" value="false"/>
+				<parameter name="userLogRdbmsCompressedLevel" value="bestCompression"/>
+				<parameter name="userLogRdbmsDeliveryFormat" value="compressed"/>
+				<parameter name="userLogRdbmsPropertyMaxVarcharSize" value="1000"/>
+				<parameter name="userLogRdbmsPropertyMaxClobSize" value="10000"/>
+				<parameter name="userLogRdbmsPropertyBinaryFormat" value="compressed"/>
+			</log>
+
+
+		
+		<!--	
+		==============================
+		DB2 UDB Log Database
+		==============================
+		-->
+
+
+			<log userLogName="db2LogDatabase" autoUpdate="true" userLogClass="com.indy.engine.userLog.RdbmsUserLog">
+				<parameter name="userLogRdbmsDriver" value="${environment.variable:STAMBIA_LOGDB_JDBC_CLASS:com.ibm.db2.jcc.DB2Driver}"/>
+				<parameter name="userLogRdbmsUrl" value="${environment.variable:STAMBIA_LOGDB_JDBC_URL:default}"/>
+				<parameter name="userLogRdbmsUser" value="${environment.variable:STAMBIA_LOGDB_JDBC_USER:default}"/>
+				<parameter name="userLogRdbmsPassword" value="${environment.variable:STAMBIA_LOGDB_JDBC_PWD:default}"/>
+				<!--<parameter name="userLogRdbmsEncryptedPassword" value="${environment.variable:STAMBIA_LOGDB_JDBC_PWD:}"/>-->
+				<parameter name="userLogRdbmsSchemaName" value="${environment.variable:STAMBIA_LOGDB_JDBC_SCHEMA:logs}"/>
+				<parameter name="userLogRdbmsVarcharType" value="varchar"/>
+				<parameter name="userLogRdbmsVarcharMaxSize" value="1000"/>
+				<parameter name="userLogRdbmsNumericType" value="numeric"/>
+				<parameter name="userLogRdbmsClobType" value="clob"/>
+				<parameter name="userLogRdbmsBlobType" value="blob"/>
+				<parameter name="userLogRdbmsUseSchemaNameForIndexCreation" value="true"/>
+				<parameter name="userLogRdbmsDeleteSyntaxe" value="Delete from"/>
+				<parameter name="userLogRdbmsCompressedLevel" value="bestCompression"/>
+				<parameter name="userLogRdbmsDeliveryFormat" value="compressed"/>
+				<parameter name="userLogRdbmsPropertyMaxVarcharSize" value="1000"/>
+				<parameter name="userLogRdbmsPropertyMaxClobSize" value="10000"/>
+				<parameter name="userLogRdbmsPropertyBinaryFormat" value="compressed"/>
+				<parameter name="userLogRdbmsTimestampQuery" value="select current_timestamp from SYSIBM.SYSDUMMY1"/>
+			</log>
+
+
+		
+		<!--	
+		==============================
+		Informix Log Database
+		==============================
+		-->		
+	
+
+
+			<log userLogName="informixLogDatabase" autoUpdate="true" userLogClass="com.indy.engine.userLog.RdbmsUserLog">
+                <parameter name="userLogRdbmsDriver" value="${environment.variable:STAMBIA_LOGDB_JDBC_CLASS:com.informix.jdbc.IfxDriver}"/>
+				<parameter name="userLogRdbmsUrl" value="${environment.variable:STAMBIA_LOGDB_JDBC_URL:default}"/>
+				<parameter name="userLogRdbmsUser" value="${environment.variable:STAMBIA_LOGDB_JDBC_USER:default}"/>
+				<parameter name="userLogRdbmsPassword" value="${environment.variable:STAMBIA_LOGDB_JDBC_PWD:default}"/>
+				<!--<parameter name="userLogRdbmsEncryptedPassword" value="${environment.variable:STAMBIA_LOGDB_JDBC_PWD:}"/>-->
+				<parameter name="userLogRdbmsSchemaName" value="${environment.variable:STAMBIA_LOGDB_JDBC_SCHEMA:logs}"/>
+                <parameter name="userLogRdbmsVarcharType" value="lvarchar"/>
+                <parameter name="userLogRdbmsVarcharMaxSize" value="4000"/>
+                <parameter name="userLogRdbmsClobType" value="text"/>
+                <parameter name="userLogRdbmsBlobType" value="byte"/>
+                <parameter name="userLogRdbmsNumericType" value="numeric"/>
+                <parameter name="userLogRdbmsDeleteSyntaxe" value="Delete from"/>
+                <parameter name="userLogRdbmsDeliveryFormat" value="text"/>
+                <parameter name="userLogRdbmsPropertyMaxVarcharSize" value="1000"/>
+                <parameter name="userLogRdbmsPropertyMaxClobSize" value="10000"/>
+                <parameter name="userLogRdbmsPropertyBinaryFormat" value="compressed"/>
+            </log>
+		</logs>		
+</parameters>
