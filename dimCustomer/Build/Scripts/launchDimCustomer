@@ -1,1 +1,1 @@
-buildPackage -mainProcessWorkspacePath "dimCustomer/Process/launchDimCustomer.proc" -package "./launchDimCustomer.pck"
+buildPackage -mainProcessWorkspacePath "samples/dimCustomer/Process/launchDimCustomer.proc" -package "./launchDimCustomer.pck"
